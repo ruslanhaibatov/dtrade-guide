@@ -9,6 +9,9 @@
 
 Это подробное учебное руководство охватывает:
 
+<img width="544" height="800" alt="image" src="https://github.com/user-attachments/assets/48a24884-a0d5-4935-99c4-448141616921" />
+
+
   основы криптовалют
   работу с Telegram-ботом @dtrade
   экосистему TON
@@ -45,6 +48,7 @@
   а также тем, у кого нет никакого опыта работы с криптовалютами.
 
 Основные темы
+<img width="555" height="795" alt="image" src="https://github.com/user-attachments/assets/13400bd1-10fb-4a48-ad69-315a263c09d9" />
 
 @dtrade
 • Trade
@@ -94,7 +98,7 @@
 
 Он не является финансовым советом.
 
-Credits
-С любовью подготовил Руслан ❤️
+<img width="451" height="159" alt="image" src="https://github.com/user-attachments/assets/81d19dcf-542a-4cff-a79b-44332b5bbc38" />
+
 
 v.1
