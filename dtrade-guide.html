@@ -36,7 +36,7 @@
     line-height: 1.7;
   }
 
-  /* NAV */
+
   nav {
     position: sticky; top: 0; z-index: 100;
     background: rgba(10,10,15,0.92);
@@ -58,7 +58,6 @@
   nav a.active { color: var(--accent2); border-bottom-color: var(--accent2); }
   .nav-logo { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent2); margin-right: 1.5rem; padding: 1rem 0; white-space: nowrap; }
 
-  /* HERO */
   .hero {
     padding: 5rem 2rem 4rem;
     max-width: 860px; margin: 0 auto;
@@ -89,10 +88,8 @@
     background: var(--surface); color: var(--muted);
   }
 
-  /* MAIN LAYOUT */
   .container { max-width: 860px; margin: 0 auto; padding: 0 2rem 6rem; }
 
-  /* SECTIONS */
   section { padding-top: 3.5rem; }
   .section-header {
     display: flex; align-items: center; gap: 12px;
@@ -112,7 +109,6 @@
     font-size: 20px; font-weight: 700;
   }
 
-  /* CARDS */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -124,7 +120,6 @@
   .card:hover { border-color: var(--border2); }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
 
-  /* METRIC CARDS */
   .metric {
     background: var(--surface2);
     border: 1px solid var(--border);
@@ -137,7 +132,6 @@
   .metric-val.gold { color: var(--gold); }
   .metric-val.blue { color: var(--blue2); }
 
-  /* BADGES */
   .badge {
     display: inline-block; font-size: 11px; font-weight: 700;
     padding: 3px 10px; border-radius: 99px;
@@ -150,7 +144,6 @@
   .badge-purple { background: rgba(108,92,231,0.15); color: var(--accent2); border: 1px solid rgba(108,92,231,0.3); }
   .badge-pink { background: rgba(232,67,147,0.15); color: #fd79a8; border: 1px solid rgba(232,67,147,0.3); }
 
-  /* STEPS */
   .steps { display: flex; flex-direction: column; gap: 0; }
   .step {
     display: flex; gap: 1.25rem; padding: 1.25rem 0;
@@ -174,7 +167,6 @@
   .step-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.4rem; }
   .step-body p { font-size: 14px; color: var(--muted); }
 
-  /* TERM CARDS */
   .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
   .term-card {
     background: var(--surface);
@@ -196,7 +188,6 @@
     border-left: 2px solid var(--accent);
   }
 
-  /* COIN TABLE */
   .coin-table { width: 100%; border-collapse: collapse; }
   .coin-table th {
     text-align: left; padding: 10px 12px;
@@ -216,7 +207,6 @@
   .coin-title { font-weight: 600; font-size: 14px; }
   .coin-sub { font-size: 12px; color: var(--muted); }
 
-  /* PICK CARDS */
   .pick-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -237,13 +227,11 @@
   .pick-footer { display: flex; flex-wrap: wrap; gap: 8px; }
   .pick-stat { font-size: 12px; font-weight: 600; background: var(--surface2); padding: 4px 10px; border-radius: 8px; color: var(--text); }
 
-  /* WARN BOXES */
   .warn { background: rgba(253,203,110,0.07); border: 1px solid rgba(253,203,110,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--gold2); }
   .danger { background: rgba(214,48,49,0.07); border: 1px solid rgba(214,48,49,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--red2); }
   .ok { background: rgba(0,184,148,0.07); border: 1px solid rgba(0,184,148,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--green2); }
   .info { background: rgba(9,132,227,0.07); border: 1px solid rgba(9,132,227,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--blue2); }
 
-  /* TG BUTTON MOCK */
   .tg-btn {
     display: inline-flex; align-items: center; gap: 6px;
     background: var(--surface2); border: 1px solid var(--border2);
@@ -252,13 +240,11 @@
     margin: 2px;
   }
 
-  /* TABLE */
   .info-table { width: 100%; border-collapse: collapse; }
   .info-table th { text-align: left; padding: 9px 12px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border2); }
   .info-table td { padding: 11px 12px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
   .info-table tr:last-child td { border-bottom: none; }
 
-  /* DISCLAIMER */
   .disclaimer {
     margin-top: 4rem; padding: 1.5rem;
     background: var(--surface); border: 1px solid var(--border);
@@ -266,7 +252,6 @@
   }
   .disclaimer p { font-size: 13px; color: var(--muted); }
 
-  /* SEARCH */
   .search-wrap { margin-bottom: 1.5rem; }
   .search-wrap input {
     width: 100%; padding: 12px 18px;
@@ -280,13 +265,11 @@
 
   .hidden { display: none !important; }
 
-  /* PROGRESS BAR */
   .progress-wrap { margin-bottom: 0.5rem; }
   .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
   .progress-bar { height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 99px; transition: width .3s; }
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 99px; }
@@ -318,7 +301,6 @@
   <a href="#taxes">Налоги и вывод</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Гайд · Май 2026</div>
   <h1>Полный гайд по<br><span>@dtrade</span> и крипте</h1>
@@ -334,7 +316,6 @@
 
 <div class="container">
 
-  <!-- SECTION 1: ЧТО ТАКОЕ DTRADE -->
   <section id="intro">
     <div class="section-header">
       <span class="section-num">01</span>
@@ -390,7 +371,6 @@
     </div>
   </section>
 
-  <!-- SECTION 2: ИНТЕРФЕЙС БОТА -->
   <section id="interface">
     <div class="section-header">
       <span class="section-num">02</span>
@@ -462,7 +442,6 @@
     <div class="warn">⚠️ <strong>Slippage — самая частая причина зафейленных сделок.</strong> Если видишь ошибку транзакции — первым делом увеличь slippage до 5–10%.</div>
   </section>
 
-  <!-- SECTION 3: КАК КУПИТЬ -->
   <section id="howto">
     <div class="section-header">
       <span class="section-num">03</span>
@@ -538,7 +517,6 @@
     </div>
   </section>
 
-  <!-- SECTION 4: ТЕРМИНЫ -->
   <section id="terms">
     <div class="section-header">
       <span class="section-num">04</span>
@@ -722,7 +700,6 @@
     </div>
   </section>
 
-  <!-- SECTION 5: ЧТО ПОКУПАТЬ -->
   <section id="picks">
     <div class="section-header">
       <span class="section-num">05</span>
@@ -893,8 +870,7 @@
       </div>
     </div>
   </section>
-
-  <!-- SECTION 6: РИСКИ -->
+  
   <section id="risks">
     <div class="section-header">
       <span class="section-num">06</span>
@@ -982,17 +958,12 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════ -->
-  <!-- НОВАЯ ЧАСТЬ: КРИПТА С НУЛЯ                        -->
-  <!-- ═══════════════════════════════════════════════════ -->
-
   <div style="margin-top:5rem; padding:2.5rem; background:linear-gradient(135deg,rgba(108,92,231,0.08),rgba(9,132,227,0.08)); border:1px solid rgba(108,92,231,0.2); border-radius:20px; text-align:center;">
     <div style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;">✦ Новая часть ✦</div>
     <h2 style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,4vw,38px);font-weight:700;margin-bottom:1rem;">Крипта с нуля</h2>
     <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;">Как работают биржи, кошельки, блокчейн и всё остальное — объяснение для тех кто только начинает</p>
   </div>
 
-  <!-- SECTION 7: КРИПТА С НУЛЯ -->
   <section id="crypto101">
     <div class="section-header">
       <span class="section-num">07</span>
@@ -1062,7 +1033,6 @@
     </div>
   </section>
 
-  <!-- SECTION 8: БИРЖИ -->
   <section id="exchanges">
     <div class="section-header">
       <span class="section-num">08</span>
@@ -1183,7 +1153,6 @@
     </div>
   </section>
 
-  <!-- SECTION 9: КОШЕЛЬКИ -->
   <section id="wallets">
     <div class="section-header">
       <span class="section-num">09</span>
@@ -1256,7 +1225,6 @@
     </div>
   </section>
 
-  <!-- SECTION 10: КАК ВСЁ УСТРОЕНО -->
   <section id="howcrypto">
     <div class="section-header">
       <span class="section-num">10</span>
@@ -1316,7 +1284,6 @@
     </div>
   </section>
 
-  <!-- SECTION 11: СТРАТЕГИИ -->
   <section id="strategies">
     <div class="section-header">
       <span class="section-num">11</span>
@@ -1396,7 +1363,6 @@
     </div>
   </section>
 
-  <!-- SECTION 12: НАЛОГИ И ВЫВОД -->
   <section id="taxes">
     <div class="section-header">
       <span class="section-num">12</span>
