@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гайд по @dtrade и крипте — Май 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #18181f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --text: #e8e8f0;
+    --muted: #7a7a9a;
+    --accent: #6c5ce7;
+    --accent2: #a29bfe;
+    --green: #00b894;
+    --green2: #55efc4;
+    --red: #d63031;
+    --red2: #ff7675;
+    --gold: #fdcb6e;
+    --gold2: #ffeaa7;
+    --blue: #0984e3;
+    --blue2: #74b9ff;
+    --pink: #e84393;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+  }
+  nav a {
+    color: var(--muted); text-decoration: none;
+    font-size: 13px; font-weight: 600;
+    padding: 1rem 1.1rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+  }
+  nav a:hover { color: var(--text); }
+  nav a.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+  .nav-logo { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700; color: var(--accent2); margin-right: 1.5rem; padding: 1rem 0; white-space: nowrap; }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 860px; margin: 0 auto;
+    text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(108,92,231,0.15);
+    border: 1px solid rgba(108,92,231,0.3);
+    color: var(--accent2);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 14px; border-radius: 99px;
+    margin-bottom: 1.5rem; letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero p { color: var(--muted); font-size: 17px; max-width: 580px; margin: 0 auto 2rem; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .chip {
+    font-size: 12px; font-weight: 600; padding: 5px 14px;
+    border-radius: 99px; border: 1px solid var(--border2);
+    background: var(--surface); color: var(--muted);
+  }
+
+  /* MAIN LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  /* SECTIONS */
+  section { padding-top: 3.5rem; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px; font-weight: 700;
+    color: var(--accent); background: rgba(108,92,231,0.12);
+    padding: 3px 10px; border-radius: 99px;
+    border: 1px solid rgba(108,92,231,0.25);
+  }
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px; font-weight: 700;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1rem;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: var(--border2); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+  /* METRIC CARDS */
+  .metric {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.2rem;
+  }
+  .metric-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+  .metric-val { font-family: 'Unbounded', sans-serif; font-size: 22px; font-weight: 700; }
+  .metric-val.green { color: var(--green2); }
+  .metric-val.red { color: var(--red2); }
+  .metric-val.gold { color: var(--gold); }
+  .metric-val.blue { color: var(--blue2); }
+
+  /* BADGES */
+  .badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 99px;
+    text-transform: uppercase; letter-spacing: .04em;
+  }
+  .badge-green { background: rgba(0,184,148,0.15); color: var(--green2); border: 1px solid rgba(0,184,148,0.3); }
+  .badge-red { background: rgba(214,48,49,0.15); color: var(--red2); border: 1px solid rgba(214,48,49,0.3); }
+  .badge-gold { background: rgba(253,203,110,0.15); color: var(--gold); border: 1px solid rgba(253,203,110,0.3); }
+  .badge-blue { background: rgba(9,132,227,0.15); color: var(--blue2); border: 1px solid rgba(9,132,227,0.3); }
+  .badge-purple { background: rgba(108,92,231,0.15); color: var(--accent2); border: 1px solid rgba(108,92,231,0.3); }
+  .badge-pink { background: rgba(232,67,147,0.15); color: #fd79a8; border: 1px solid rgba(232,67,147,0.3); }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex; gap: 1.25rem; padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .step-circle {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(108,92,231,0.15);
+    border: 1px solid rgba(108,92,231,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700;
+    color: var(--accent2); flex-shrink: 0;
+  }
+  .step-line { flex: 1; width: 1px; background: var(--border); margin: 4px 0; }
+  .step:last-child .step-line { display: none; }
+  .step-body { flex: 1; padding-top: 6px; }
+  .step-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.4rem; }
+  .step-body p { font-size: 14px; color: var(--muted); }
+
+  /* TERM CARDS */
+  .term-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .term-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.1rem 1.3rem;
+    cursor: pointer; transition: all .2s;
+  }
+  .term-card:hover { border-color: var(--accent); background: var(--surface2); }
+  .term-card .term-name {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 14px; font-weight: 700; margin-bottom: 0.35rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .term-card .term-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .term-card .term-example {
+    margin-top: 0.6rem; padding: 0.6rem 0.8rem;
+    background: var(--surface2); border-radius: 8px;
+    font-size: 12px; color: var(--accent2);
+    border-left: 2px solid var(--accent);
+  }
+
+  /* COIN TABLE */
+  .coin-table { width: 100%; border-collapse: collapse; }
+  .coin-table th {
+    text-align: left; padding: 10px 12px;
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    text-transform: uppercase; letter-spacing: .05em;
+    border-bottom: 1px solid var(--border2);
+  }
+  .coin-table td { padding: 14px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .coin-table tr:last-child td { border-bottom: none; }
+  .coin-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .coin-icon-wrap {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .coin-name-col { display: flex; align-items: center; gap: 12px; }
+  .coin-title { font-weight: 600; font-size: 14px; }
+  .coin-sub { font-size: 12px; color: var(--muted); }
+
+  /* PICK CARDS */
+  .pick-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    margin-bottom: 14px;
+    position: relative; overflow: hidden;
+  }
+  .pick-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .pick-card.high::before { background: linear-gradient(90deg, var(--red), var(--pink)); }
+  .pick-card.medium::before { background: linear-gradient(90deg, var(--gold), var(--green)); }
+  .pick-card.safe::before { background: linear-gradient(90deg, var(--blue), var(--accent2)); }
+  .pick-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 1rem; }
+  .pick-title { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .pick-meta { font-size: 12px; color: var(--muted); }
+  .pick-body { font-size: 14px; color: var(--muted); margin-bottom: 1rem; line-height: 1.65; }
+  .pick-footer { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pick-stat { font-size: 12px; font-weight: 600; background: var(--surface2); padding: 4px 10px; border-radius: 8px; color: var(--text); }
+
+  /* WARN BOXES */
+  .warn { background: rgba(253,203,110,0.07); border: 1px solid rgba(253,203,110,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--gold2); }
+  .danger { background: rgba(214,48,49,0.07); border: 1px solid rgba(214,48,49,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--red2); }
+  .ok { background: rgba(0,184,148,0.07); border: 1px solid rgba(0,184,148,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--green2); }
+  .info { background: rgba(9,132,227,0.07); border: 1px solid rgba(9,132,227,0.2); border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 14px; color: var(--blue2); }
+
+  /* TG BUTTON MOCK */
+  .tg-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface2); border: 1px solid var(--border2);
+    border-radius: 8px; padding: 5px 12px;
+    font-size: 13px; font-weight: 600; color: var(--text);
+    margin: 2px;
+  }
+
+  /* TABLE */
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table th { text-align: left; padding: 9px 12px; font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border2); }
+  .info-table td { padding: 11px 12px; font-size: 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .info-table tr:last-child td { border-bottom: none; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    margin-top: 4rem; padding: 1.5rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; text-align: center;
+  }
+  .disclaimer p { font-size: 13px; color: var(--muted); }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom: 1.5rem; }
+  .search-wrap input {
+    width: 100%; padding: 12px 18px;
+    background: var(--surface); border: 1px solid var(--border2);
+    border-radius: 12px; color: var(--text);
+    font-size: 15px; font-family: 'Manrope', sans-serif;
+    outline: none; transition: border-color .2s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  .hidden { display: none !important; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin-bottom: 0.5rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+  .progress-bar { height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 99px; transition: width .3s; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 99px; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.2rem 2.5rem; }
+    .container { padding: 0 1.2rem 4rem; }
+    nav { padding: 0 0.5rem; }
+    .card { padding: 1rem 1.1rem; }
+    .coin-table th:nth-child(3), .coin-table td:nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">@dtrade</div>
+  <a href="#intro" class="active">Что это</a>
+  <a href="#interface">Интерфейс</a>
+  <a href="#howto">Как купить</a>
+  <a href="#terms">Термины</a>
+  <a href="#picks">Что брать</a>
+  <a href="#risks">Риски</a>
+  <a href="#crypto101">Крипта с нуля</a>
+  <a href="#exchanges">Биржи</a>
+  <a href="#wallets">Кошельки</a>
+  <a href="#howcrypto">Как всё устроено</a>
+  <a href="#strategies">Стратегии</a>
+  <a href="#taxes">Налоги и вывод</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Гайд · Май 2026</div>
+  <h1>Полный гайд по<br><span>@dtrade</span> и крипте</h1>
+  <p>Все кнопки бота, термины от A до Z, и что реально стоит купить прямо сейчас — простым языком без воды</p>
+  <div class="hero-chips">
+    <span class="chip">TON кошелёк уже подключён ✓</span>
+    <span class="chip">Мемкоины</span>
+    <span class="chip">Альткоины</span>
+    <span class="chip">Все термины</span>
+    <span class="chip">Реальные пики</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: ЧТО ТАКОЕ DTRADE -->
+  <section id="intro">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Что такое @dtrade</h2>
+    </div>
+
+    <div class="card">
+      <p style="font-size:15px; margin-bottom:1rem">@dtrade — это Telegram-бот, который позволяет торговать криптовалютами прямо в мессенджере. Это как мини-биржа внутри Telegram. Не нужно сайтов, не нужно сложных интерфейсов — всё делается кнопками в чате.</p>
+      <p style="font-size:15px">Работает на блокчейне <strong>TON</strong> (The Open Network) — это блокчейн, созданный командой Telegram. Именно поэтому интеграция с Telegram такая бесшовная.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom: 1rem;">
+      <div class="metric">
+        <div class="metric-label">Блокчейн</div>
+        <div class="metric-val blue">TON</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Комиссия бота</div>
+        <div class="metric-val green">~1%</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Скорость сделки</div>
+        <div class="metric-val gold">5–30 сек</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Статус кошелька</div>
+        <div class="metric-val green">✓ Подключён</div>
+      </div>
+    </div>
+
+    <div class="ok">✅ У тебя уже подключён TON-кошелёк — это самое сложное позади. Остальное — дело техники.</div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-size:15px; font-weight:600">Как это работает — схема</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">1</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>TON на кошельке</h4><p>Покупаешь TON на обычной бирже (Bybit, OKX) и переводишь на свой TON-адрес в TonKeeper или TonSpace</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">2</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Находишь монету в боте</h4><p>Через Search или Trending находишь мемкоин / токен который хочешь купить</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">3</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Покупаешь за TON</h4><p>Нажимаешь Buy, подтверждаешь в кошельке — монеты приходят за секунды</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">4</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Следишь и продаёшь</h4><p>Когда монета выросла — продаёшь обратно в TON. TON уже можно вывести на биржу и обменять на рубли/евро</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: ИНТЕРФЕЙС БОТА -->
+  <section id="interface">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Все кнопки бота</h2>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">Главное меню</h4>
+      <table class="info-table">
+        <thead><tr><th>Кнопка</th><th>Что делает</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tg-btn">📈 Trade</span></td><td>Главный экран торговли — здесь покупаешь и продаёшь</td></tr>
+          <tr><td><span class="tg-btn">👛 Wallet</span></td><td>Баланс твоего кошелька: сколько TON, сколько токенов</td></tr>
+          <tr><td><span class="tg-btn">📋 Portfolio</span></td><td>Список всех купленных монет с текущей стоимостью</td></tr>
+          <tr><td><span class="tg-btn">🔥 Trending</span></td><td>Горячие монеты прямо сейчас — топ по объёму и росту</td></tr>
+          <tr><td><span class="tg-btn">🔍 Search</span></td><td>Поиск монеты по тикеру (UTYA) или адресу контракта</td></tr>
+          <tr><td><span class="tg-btn">⚙️ Settings</span></td><td>Настройки: slippage, газ, кошелёк, авто-покупка</td></tr>
+          <tr><td><span class="tg-btn">📊 PnL</span></td><td>Прибыль и убыток по всем позициям — твоя статистика</td></tr>
+          <tr><td><span class="tg-btn">🔔 Alerts</span></td><td>Уведомления о цене — поставь алерт на нужный уровень</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">Экран конкретной монеты</h4>
+      <table class="info-table">
+        <thead><tr><th>Кнопка</th><th>Что делает</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tg-btn">Buy 0.5 TON</span> <span class="tg-btn">Buy 1 TON</span></td><td>Быстрая покупка на фиксированную сумму без ввода</td></tr>
+          <tr><td><span class="tg-btn">Buy X</span></td><td>Ввести свою произвольную сумму в TON</td></tr>
+          <tr><td><span class="tg-btn">Sell 25%</span> <span class="tg-btn">50%</span> <span class="tg-btn">100%</span></td><td>Продать часть или всё что есть из этой монеты</td></tr>
+          <tr><td><span class="tg-btn">📈 Chart</span></td><td>График цены — открывает в DexScreener или GeckoTerminal</td></tr>
+          <tr><td><span class="tg-btn">📋 Copy CA</span></td><td>Скопировать адрес контракта монеты (Contract Address)</td></tr>
+          <tr><td><span class="tg-btn">🔄 Refresh</span></td><td>Обновить текущую цену и данные</td></tr>
+          <tr><td><span class="tg-btn">⭐ Watch</span></td><td>Добавить в список наблюдения</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">Settings — важные параметры</h4>
+      <table class="info-table">
+        <thead><tr><th>Параметр</th><th>Что это</th><th>Рекомендация</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Slippage</strong></td>
+            <td>Допустимое отклонение цены при покупке. Если цена изменилась больше этого % — сделка отменяется</td>
+            <td><span class="badge badge-gold">1–3% для стабильных</span><br><span class="badge badge-red" style="margin-top:4px">5–10% для новых монет</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gas / Priority</strong></td>
+            <td>Комиссия майнерам за скорость обработки твоей транзакции</td>
+            <td><span class="badge badge-green">Авто — достаточно</span></td>
+          </tr>
+          <tr>
+            <td><strong>Auto-Buy</strong></td>
+            <td>Покупка без дополнительного подтверждения — одно нажатие</td>
+            <td><span class="badge badge-gold">Осторожно</span></td>
+          </tr>
+          <tr>
+            <td><strong>MEV Protection</strong></td>
+            <td>Защита от ботов, которые «выкупают» перед тобой. Если включено — безопаснее, но чуть медленнее</td>
+            <td><span class="badge badge-green">Включи</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn">⚠️ <strong>Slippage — самая частая причина зафейленных сделок.</strong> Если видишь ошибку транзакции — первым делом увеличь slippage до 5–10%.</div>
+  </section>
+
+  <!-- SECTION 3: КАК КУПИТЬ -->
+  <section id="howto">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Как купить шаг за шагом</h2>
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">1</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <h4>Пополни кошелёк TON-монетами</h4>
+            <p>Купи TON на бирже Bybit, OKX или Huobi. Скопируй свой TON-адрес из кошелька (TonKeeper) и выведи туда минимум 10–20 TON. Меньше смысла нет — часть сгорит на комиссиях.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">2</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <h4>Найди монету</h4>
+            <p>Нажми 🔍 Search и введи тикер (например UTYA). Или вставь адрес контракта (CA) — длинная строка вида EQ... Можно также нажать 🔥 Trending чтобы увидеть что сейчас растёт.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">3</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <h4>Проверь монету ПЕРЕД покупкой</h4>
+            <p>Обязательно смотри: Market Cap (капитализация), Liquidity (ликвидность), Holders (кол-во держателей), возраст монеты. Если монета только что создана (меньше 1 часа) — риск огромный.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">4</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <h4>Купи</h4>
+            <p>Нажми быструю кнопку (Buy 1 TON) или Buy X → введи сумму. Подтверди в кошельке. Монеты придут за 5–30 секунд. Если ошибка — увеличь Slippage в настройках.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">5</div><div class="step-line"></div></div>
+          <div class="step-body">
+            <h4>Следи через Portfolio</h4>
+            <p>Нажми 📋 Portfolio — там видно текущую цену и прибыль/убыток. Когда монета выросла — продавай через Sell 50% или Sell 100%.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ok">💡 <strong>Совет профи:</strong> при x2 продай 50% — так ты уже в безубытке, а оставшаяся часть может расти дальше бесплатно для тебя.</div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">Что проверять перед покупкой</h4>
+      <div class="card-grid">
+        <div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Market Cap</span><span style="color:var(--green2)">Хороший диапазон</span></div>
+            <div style="font-size:13px; color:var(--muted); margin-bottom:6px">$10K – $5M = хорошо. Больше $50M = уже поздно.</div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Liquidity</span><span style="color:var(--gold)">Минимум $5K</span></div>
+            <div style="font-size:13px; color:var(--muted)">Меньше $5K ликвидности = продать будет почти невозможно.</div>
+          </div>
+        </div>
+        <div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Holders (держатели)</span><span style="color:var(--red2)">Топ-10 < 30%</span></div>
+            <div style="font-size:13px; color:var(--muted)">Если один кошелёк держит 20%+ — высокий риск дампа.</div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Возраст монеты</span><span style="color:var(--blue2)">Старше = стабильнее</span></div>
+            <div style="font-size:13px; color:var(--muted)">Свежая монета (меньше 1 часа) — спекуляция, не инвестиция.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: ТЕРМИНЫ -->
+  <section id="terms">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Все термины — от A до Я</h2>
+    </div>
+
+    <div class="search-wrap">
+      <input type="text" id="termSearch" placeholder="🔍 Найти термин... например: Rug Pull, ATH, DYOR" oninput="filterTerms(this.value)">
+    </div>
+
+    <div class="term-grid" id="termGrid">
+
+      <div class="term-card" data-tags="рыночная капитализация цена">
+        <div class="term-name"><span class="badge badge-blue">📊</span> Market Cap</div>
+        <div class="term-desc">Рыночная капитализация — общая стоимость всех монет. Считается как: цена одной монеты × количество монет в обращении.</div>
+        <div class="term-example">Если монета стоит $0.01 и их 1 миллиард штук → Market Cap = $10 млн</div>
+      </div>
+
+      <div class="term-card" data-tags="ликвидность пул торги">
+        <div class="term-name"><span class="badge badge-green">💧</span> Liquidity</div>
+        <div class="term-desc">Ликвидность — сколько денег в пуле для торговли. Чем больше ликвидность — тем легче купить и продать по нормальной цене.</div>
+        <div class="term-example">Liquidity $100K = можно купить на $10K без серьёзного влияния на цену</div>
+      </div>
+
+      <div class="term-card" data-tags="скольжение цена сделка">
+        <div class="term-name"><span class="badge badge-gold">📉</span> Slippage</div>
+        <div class="term-desc">Проскальзывание — разница между ожидаемой и реальной ценой сделки. Чем меньше ликвидность — тем больше проскальзывание.</div>
+        <div class="term-example">Ты хочешь купить по $1, но из-за slippage покупаешь по $1.05 (5%)</div>
+      </div>
+
+      <div class="term-card" data-tags="адрес контракт токен">
+        <div class="term-name"><span class="badge badge-purple">📄</span> CA / Contract Address</div>
+        <div class="term-desc">Адрес смарт-контракта токена. Это уникальный идентификатор монеты в блокчейне — длинная строка букв и цифр. Никогда не бери CA из случайных чатов.</div>
+        <div class="term-example">EQB...xYz — это адрес контракта UTYA на TON</div>
+      </div>
+
+      <div class="term-card" data-tags="исторический максимум цена рекорд">
+        <div class="term-name"><span class="badge badge-gold">🏆</span> ATH</div>
+        <div class="term-desc">All-Time High — исторический максимум цены монеты за всё время существования.</div>
+        <div class="term-example">ATH Bitcoin — около $109K в 2025 году</div>
+      </div>
+
+      <div class="term-card" data-tags="исторический минимум цена дно">
+        <div class="term-name"><span class="badge badge-red">📉</span> ATL</div>
+        <div class="term-desc">All-Time Low — исторический минимум цены. Покупка вблизи ATL часто считается хорошей возможностью, но не гарантией роста.</div>
+        <div class="term-example">Монета упала с $1 до $0.001 — это может быть ATL</div>
+      </div>
+
+      <div class="term-card" data-tags="кит большой кошелёк много монет">
+        <div class="term-name"><span class="badge badge-blue">🐋</span> Whale</div>
+        <div class="term-desc">Кит — крупный держатель монеты. Если кит продаёт — цена обычно резко падает. Следи за движениями китов через on-chain данные.</div>
+        <div class="term-example">Один кошелёк держит 15% всего supply — это кит</div>
+      </div>
+
+      <div class="term-card" data-tags="памп дамп рост падение координация">
+        <div class="term-name"><span class="badge badge-red">🚀</span> Pump & Dump</div>
+        <div class="term-desc">Схема: сначала координированно покупают (памп — цена растёт), затем ранние покупатели резко продают (дамп — цена обваливается). Поздние покупатели теряют деньги.</div>
+        <div class="term-example">Монета выросла х10 за час, потом упала х0.1 — классический pump & dump</div>
+      </div>
+
+      <div class="term-card" data-tags="rug pull мошенничество разработчики">
+        <div class="term-name"><span class="badge badge-red">🪤</span> Rug Pull</div>
+        <div class="term-desc">Разработчики создают монету, собирают деньги инвесторов, затем резко выводят всю ликвидность и исчезают. Монета становится мусором. Самый частый вид мошенничества.</div>
+        <div class="term-example">Ликвидность была $500K, внезапно стала $0 — rug pull</div>
+      </div>
+
+      <div class="term-card" data-tags="honeypot мошенничество продать нельзя">
+        <div class="term-name"><span class="badge badge-red">🍯</span> Honeypot</div>
+        <div class="term-desc">Ловушка: монету можно купить, но невозможно продать. Контракт специально запрограммирован так. Проверяй на honeypot.is перед покупкой.</div>
+        <div class="term-example">Buy Tax 0%, Sell Tax 100% — это honeypot</div>
+      </div>
+
+      <div class="term-card" data-tags="децентрализованная биржа обмен свап">
+        <div class="term-name"><span class="badge badge-blue">🔄</span> DEX</div>
+        <div class="term-desc">Decentralized Exchange — децентрализованная биржа. Здесь нет посредника: смарт-контракт сам исполняет обмен. @dtrade использует DEX под капотом.</div>
+        <div class="term-example">DeDust, Ston.fi — это DEX на TON</div>
+      </div>
+
+      <div class="term-card" data-tags="централизованная биржа binance bybit регистрация">
+        <div class="term-name"><span class="badge badge-purple">🏦</span> CEX</div>
+        <div class="term-desc">Centralized Exchange — централизованная биржа (Binance, Bybit, OKX). Требует регистрации и KYC. Более надёжна для хранения, но ты не владеешь своими ключами.</div>
+        <div class="term-example">Binance, Bybit, OKX — это CEX</div>
+      </div>
+
+      <div class="term-card" data-tags="пул ликвидности LP заблокированный">
+        <div class="term-name"><span class="badge badge-green">🔒</span> LP Locked</div>
+        <div class="term-desc">Locked Liquidity Pool — ликвидность заблокирована смарт-контрактом на определённый срок. Если LP заблокирована — rug pull невозможен. Ищи этот статус перед покупкой.</div>
+        <div class="term-example">LP Locked 1 year = разработчики не могут забрать деньги год</div>
+      </div>
+
+      <div class="term-card" data-tags="supply количество монет обращение">
+        <div class="term-name"><span class="badge badge-blue">💰</span> Supply</div>
+        <div class="term-desc">Количество монет. Total Supply — общее количество. Circulating Supply — в свободном обращении (исключая заблокированные). Max Supply — максимум возможных монет.</div>
+        <div class="term-example">Bitcoin: Max Supply = 21 млн. Больше не будет никогда.</div>
+      </div>
+
+      <div class="term-card" data-tags="токеномика распределение экономика">
+        <div class="term-name"><span class="badge badge-purple">📐</span> Tokenomics</div>
+        <div class="term-desc">Экономика токена: как распределены монеты, есть ли эмиссия (выпуск новых), кто что держит. Плохая токеномика = инфляция = цена падает.</div>
+        <div class="term-example">Team holds 50% — плохо. Community 90% — хорошо.</div>
+      </div>
+
+      <div class="term-card" data-tags="прибыль убыток позиция торговля">
+        <div class="term-name"><span class="badge badge-green">📊</span> PnL</div>
+        <div class="term-desc">Profit and Loss — прибыль и убыток. Показывает сколько ты заработал или потерял на позиции. Считается в % и в $.</div>
+        <div class="term-example">Купил на $100, сейчас стоит $250 → PnL = +150%</div>
+      </div>
+
+      <div class="term-card" data-tags="иксы умножение прибыль рост">
+        <div class="term-name"><span class="badge badge-gold">✖️</span> X (иксы)</div>
+        <div class="term-desc">Умножение цены. х2 = цена удвоилась, х10 = выросла в 10 раз. Самый популярный сленг в крипте.</div>
+        <div class="term-example">Купил по $0.01, продал по $0.10 = сделал х10</div>
+      </div>
+
+      <div class="term-card" data-tags="dyor исследование делай сам">
+        <div class="term-name"><span class="badge badge-purple">🔬</span> DYOR</div>
+        <div class="term-desc">Do Your Own Research — делай своё исследование. Напоминание что нельзя слепо доверять советам других — изучи проект сам перед покупкой.</div>
+        <div class="term-example">"Я купил UTYA, но DYOR — это моё решение, не финансовый совет"</div>
+      </div>
+
+      <div class="term-card" data-tags="fomo страх упустить прибыль">
+        <div class="term-name"><span class="badge badge-red">😰</span> FOMO</div>
+        <div class="term-desc">Fear of Missing Out — страх упустить прибыль. Толкает людей покупать на пике когда все уже говорят о росте. FOMO — злейший враг трейдера.</div>
+        <div class="term-example">Монета +500%, все кричат "летим на луну" — это FOMO-момент для покупки</div>
+      </div>
+
+      <div class="term-card" data-tags="фундаментальный анализ стакан ордера">
+        <div class="term-name"><span class="badge badge-blue">📉</span> FUD</div>
+        <div class="term-desc">Fear, Uncertainty, Doubt — страх, неопределённость, сомнения. Негативные новости или слухи, которые давят на цену. Иногда намеренно распространяются для манипуляции.</div>
+        <div class="term-example">"Правительство запрещает крипту" — классический FUD</div>
+      </div>
+
+      <div class="term-card" data-tags="держать hodl долгосрок">
+        <div class="term-name"><span class="badge badge-green">💎</span> HODL</div>
+        <div class="term-desc">Hold On for Dear Life — держать монету несмотря ни на что. Стратегия долгосрочного удержания без продажи при падениях. Родилась из опечатки в 2013.</div>
+        <div class="term-example">Купил BTC в 2020 и держал до 2025 = идеальный HODL</div>
+      </div>
+
+      <div class="term-card" data-tags="газ комиссия транзакция сеть">
+        <div class="term-name"><span class="badge badge-gold">⛽</span> Gas Fee</div>
+        <div class="term-desc">Комиссия за обработку транзакции в блокчейне. Платится майнерам или валидаторам сети. На TON газ очень дешёвый — обычно меньше $0.01.</div>
+        <div class="term-example">Ethereum gas = $5–50. TON gas = $0.001–0.01</div>
+      </div>
+
+      <div class="term-card" data-tags="свап обмен токены">
+        <div class="term-name"><span class="badge badge-blue">🔁</span> Swap</div>
+        <div class="term-desc">Обмен одного токена на другой прямо на DEX без посредников. Когда ты покупаешь монету в @dtrade — это и есть swap: TON → монета.</div>
+        <div class="term-example">Swap: 5 TON → 1,000,000 UTYA</div>
+      </div>
+
+      <div class="term-card" data-tags="нарратив тема тренд сезон">
+        <div class="term-name"><span class="badge badge-pink">🎭</span> Narrative</div>
+        <div class="term-desc">Тема или тренд, вокруг которого собирается хайп и деньги. Мемкоины, ИИ-токены, GameFi — всё это нарративы. Правильный нарратив = x10 потенциал.</div>
+        <div class="term-example">2024: мемкоин нарратив. 2025: AI-токены. 2026: RWA, TON-экосистема</div>
+      </div>
+
+      <div class="term-card" data-tags="альткоин не биткоин другие монеты">
+        <div class="term-name"><span class="badge badge-purple">🪙</span> Altcoin</div>
+        <div class="term-desc">Любая криптовалюта кроме Bitcoin. Ethereum, Solana, TON, XRP — всё это альткоины. Обычно более рискованные чем BTC, но с большим потенциалом роста.</div>
+        <div class="term-example">SOL, ETH, TON, XRP — альткоины</div>
+      </div>
+
+      <div class="term-card" data-tags="бычий рынок рост bull">
+        <div class="term-name"><span class="badge badge-green">🐂</span> Bull Market</div>
+        <div class="term-desc">Бычий рынок — период роста цен. Называется так потому что бык атакует рогами снизу вверх. Во время bull run большинство монет растут.</div>
+        <div class="term-example">2020–2021 и 2024–2025 — bull market периоды</div>
+      </div>
+
+      <div class="term-card" data-tags="медвежий рынок падение bear">
+        <div class="term-name"><span class="badge badge-red">🐻</span> Bear Market</div>
+        <div class="term-desc">Медвежий рынок — период падения и низких цен. Медведь давит лапой сверху вниз. Во время bear market большинство монет теряют 70–90% стоимости.</div>
+        <div class="term-example">2022 — классический bear market</div>
+      </div>
+
+      <div class="term-card" data-tags="доминирование биткоин индекс рынок">
+        <div class="term-name"><span class="badge badge-gold">👑</span> BTC Dominance</div>
+        <div class="term-desc">Доля Bitcoin в общей капитализации крипторынка. Когда BTC доминирование падает — деньги текут в альткоины. Сейчас BTC Dom ≈ 58.5%.</div>
+        <div class="term-example">BTC Dom 60%→50% = начало сезона альткоинов</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: ЧТО ПОКУПАТЬ -->
+  <section id="picks">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Что бы я взял сейчас</h2>
+    </div>
+
+    <div class="info" style="margin-bottom:1.5rem">📌 <strong>Май 2026, текущая ситуация:</strong> BTC торгуется около $78K, Fear & Greed = 40 (страх), BTC доминирование = 58.5%. Это исторически хорошее время для набора позиций — не эйфория, не паника. Хорошая точка входа.</div>
+
+    <h3 style="font-size:16px; font-weight:600; margin-bottom:1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; font-size:12px">🔵 Безопасные — для основы портфеля</h3>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">Bitcoin (BTC)</div>
+          <div class="pick-meta">Цифровое золото · ~$78,000</div>
+        </div>
+        <span class="badge badge-blue">Безопасно</span>
+      </div>
+      <div class="pick-body">BTC сейчас торгуется около $78K — ниже ATH $109K. ETF-фонды закупились в апреле на $2.44 млрд. В мае ожидается смена главы ФРС на более про-криптового Уорша, что может дать импульс. Это лучшее соотношение риска/прибыли в крипте. Даже 30% портфеля в BTC — это страховка от полного краша.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: $90K–$100K</span>
+        <span class="pick-stat">⚡ Риск: Низкий</span>
+        <span class="pick-stat">⏳ Горизонт: 3–6 мес</span>
+      </div>
+    </div>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">Ethereum (ETH)</div>
+          <div class="pick-meta">Смарт-контракты · ~$2,300</div>
+        </div>
+        <span class="badge badge-blue">Безопасно</span>
+      </div>
+      <div class="pick-body">ETH сильно просел от ATH — сейчас ниже $2,400. Институционалы заходят: за один день влили $101M в ETH ETF. Плюс в июне 2026 планируется апгрейд Glamsterdam. Исторически ETH растёт на 35–60% перед крупными апгрейдами. Май — окно входа перед этим ростом.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: $3,500–$4,500</span>
+        <span class="pick-stat">⚡ Риск: Низкий–Средний</span>
+        <span class="pick-stat">⏳ Горизонт: 2–4 мес</span>
+      </div>
+    </div>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">TON (The Open Network)</div>
+          <div class="pick-meta">Блокчейн Telegram · ~$3–4</div>
+        </div>
+        <span class="badge badge-blue">Стратегически</span>
+      </div>
+      <div class="pick-body">TON — блокчейн в котором ты уже работаешь. 900 млн пользователей Telegram — это потенциальная аудитория. Если Telegram продолжит интегрировать крипту (мини-аппы, платежи) — TON будет бенефициаром. Держать часть портфеля в TON логично если торгуешь на этой сети.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: $6–$10</span>
+        <span class="pick-stat">⚡ Риск: Средний</span>
+        <span class="pick-stat">⏳ Горизонт: 3–9 мес</span>
+      </div>
+    </div>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">XRP</div>
+          <div class="pick-meta">Межбанковские переводы · ~$1.37</div>
+        </div>
+        <span class="badge badge-green">Катализатор</span>
+      </div>
+      <div class="pick-body">XRP упал с ATH $3.65 до $1.37 — минус 63%. При этом ETF-фонды закачивают деньги рекордными темпами. В мае в Сенате США проходит голосование по CLARITY Act — если пройдёт, XRP получает юридическую ясность и потенциал к $3–8. Ставка на регуляторный катализатор.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: $3–$8</span>
+        <span class="pick-stat">⚡ Риск: Средний</span>
+        <span class="pick-stat">⏳ Горизонт: 1–6 мес</span>
+      </div>
+    </div>
+
+    <h3 style="font-size:12px; font-weight:600; margin: 2rem 0 1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em">🟡 Альткоины — выше риск, выше потенциал</h3>
+
+    <div class="pick-card medium">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">Solana (SOL)</div>
+          <div class="pick-meta">Быстрый блокчейн · топ альткоин</div>
+        </div>
+        <span class="badge badge-gold">Средний риск</span>
+      </div>
+      <div class="pick-body">SOL показывает +2.48% когда рынок боится. Лучший TVL среди L1-блокчейнов. Корейский Shinhan Bank (28 млн клиентов) тестирует стейблкоин-платежи на Solana. CME запустил SOL фьючерсы. Это сигналы серьёзной институционализации. Потенциал x2–x5 при развороте рынка.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: x2–x5</span>
+        <span class="pick-stat">⚡ Риск: Средний</span>
+        <span class="pick-stat">⏳ Горизонт: 2–6 мес</span>
+      </div>
+    </div>
+
+    <h3 style="font-size:12px; font-weight:600; margin: 2rem 0 1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em">🔴 Мемкоины TON — максимальный риск и максимальный потенциал</h3>
+
+    <div class="danger">🚨 Всё что ниже — это спекуляции высшего уровня. Вкладывай только то, что не страшно потерять. Реально.</div>
+
+    <div class="pick-card high">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">UTYA 🦆</div>
+          <div class="pick-meta">TON мемкоин · Самый известный TON мем</div>
+        </div>
+        <span class="badge badge-pink">Спекуляция</span>
+      </div>
+      <div class="pick-body">UTYA — самый "взрослый" мемкоин в TON-экосистеме, есть комьюнити и узнаваемость. Для мемкоина это огромный плюс. Если TON пойдёт вверх — UTYA вероятно последует. Из всех TON мемкоинов здесь наименьший риск rug pull, хотя всё равно огромный.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: x5–x50</span>
+        <span class="pick-stat">⚡ Риск: Очень высокий</span>
+        <span class="pick-stat">💡 Позиция: 5–10% портфеля макс</span>
+      </div>
+    </div>
+
+    <div class="pick-card high">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">PEPE PLUSH 🐸</div>
+          <div class="pick-meta">TON мемкоин · NFT коллекция + токен</div>
+        </div>
+        <span class="badge badge-pink">Спекуляция</span>
+      </div>
+      <div class="pick-body">Сочетание NFT коллекции и мемкоина — флор NFT доходил до 5,000 TON. Pepe нарратив работает глобально. Высокая волатильность: может как х20, так и -95% за неделю. Если берёшь — ставь жёсткий стоп-лосс в голове.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: x10–x100</span>
+        <span class="pick-stat">⚡ Риск: Экстремальный</span>
+        <span class="pick-stat">💡 Позиция: 2–5% портфеля</span>
+      </div>
+    </div>
+
+    <div class="pick-card high">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">REDO & LOGO</div>
+          <div class="pick-meta">TON мемкоины · Нарратив-монеты</div>
+        </div>
+        <span class="badge badge-red">Высокий риск</span>
+      </div>
+      <div class="pick-body">Обе монеты живут нарративом — пока история работает, цена растёт. REDO (redo/переделать) и LOGO (логотип-нарратив) имеют комьюнити в TON. Следи за объёмами — если объёмы падают несколько дней подряд, нарратив умирает. Покупай только при активной торговле.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">📈 Потенциал: x5–x50</span>
+        <span class="pick-stat">⚡ Риск: Очень высокий</span>
+        <span class="pick-stat">💡 Позиция: 2–3% портфеля</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem">
+      <h4 style="margin-bottom:1rem; font-weight:600">Пример распределения портфеля</h4>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div class="progress-wrap">
+          <div class="progress-label"><span>BTC</span><span style="color:var(--gold)">30%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:30%; background:var(--gold)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>ETH + SOL</span><span style="color:var(--blue2)">25%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:25%; background:var(--blue2)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>XRP + TON</span><span style="color:var(--green2)">25%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:25%; background:var(--green2)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>UTYA + TON мемы</span><span style="color:var(--red2)">15%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:15%; background:var(--red2)"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label"><span>Кэш / USDT (резерв)</span><span style="color:var(--muted)">5%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:5%; background:var(--muted)"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: РИСКИ -->
+  <section id="risks">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Риски и защита</h2>
+    </div>
+
+    <div class="danger" style="margin-bottom:1.5rem">🚨 Большинство мемкоинов теряют 90%+ стоимости. Это не страшилка — это статистика. 95% людей в крипте теряют деньги потому что не следуют правилам.</div>
+
+    <div class="card">
+      <table class="info-table">
+        <thead><tr><th>Риск</th><th>Описание</th><th>Защита</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-red">Rug Pull</span></td>
+            <td>Разработчики выводят ликвидность и исчезают</td>
+            <td>Проверяй LP Locked на DexScreener</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">Honeypot</span></td>
+            <td>Купить можно, продать — нет</td>
+            <td>Проверяй на <strong>honeypot.is</strong></td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-gold">Pump & Dump</span></td>
+            <td>Координированный рост → обвал</td>
+            <td>Не покупай монеты что уже +500% за день</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-gold">Высокий налог</span></td>
+            <td>Sell Tax 20–100% в контракте</td>
+            <td>Смотри Buy/Sell Tax на DexScreener</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">Slippage ошибка</span></td>
+            <td>Транзакция фейлится, но газ списывается</td>
+            <td>Увеличь slippage до 5–10% в Settings</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-purple">Фишинг</span></td>
+            <td>Фейковые ссылки крадут доступ к кошельку</td>
+            <td>Никогда не вводи seed-фразу нигде кроме кошелька</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">🔒 Золотые правила</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">→</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Никогда не бери CA из случайных чатов и группок</h4><p>Только с DexScreener, GeckoTerminal, или официальных сайтов проекта</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">→</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Никогда не вкладывай больше чем готов потерять</h4><p>Серьёзно. 100% потеря — вполне реальный сценарий в мемкоинах</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">→</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Фиксируй прибыль частями</h4><p>Продал 50% при x2 → ты уже в безубытке. Остаток держи сколько хочешь</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">→</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Не гонись за уже улетевшим</h4><p>+1000% уже было — следующий поезд придёт. FOMO убивает депозиты</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">→</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Начни с малого</h4><p>Первые 2–3 сделки делай на 1–2 TON. Изучи процесс без большого риска</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem; font-weight:600">🛠️ Полезные ресурсы для проверки</h4>
+      <table class="info-table">
+        <thead><tr><th>Ресурс</th><th>Для чего</th></tr></thead>
+        <tbody>
+          <tr><td><strong>dexscreener.com/ton</strong></td><td>Все монеты TON с графиками, объёмами и статусом LP</td></tr>
+          <tr><td><strong>geckoterminal.com/ton</strong></td><td>Новые пулы, trending, аналитика монет</td></tr>
+          <tr><td><strong>honeypot.is</strong></td><td>Проверка монеты на honeypot перед покупкой</td></tr>
+          <tr><td><strong>tonviewer.com</strong></td><td>Блокчейн-проводник TON — смотри транзакции и кошельки</td></tr>
+          <tr><td><strong>coinmarketcap.com</strong></td><td>Цены, капитализации, рейтинги крупных монет</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- НОВАЯ ЧАСТЬ: КРИПТА С НУЛЯ                        -->
+  <!-- ═══════════════════════════════════════════════════ -->
+
+  <div style="margin-top:5rem; padding:2.5rem; background:linear-gradient(135deg,rgba(108,92,231,0.08),rgba(9,132,227,0.08)); border:1px solid rgba(108,92,231,0.2); border-radius:20px; text-align:center;">
+    <div style="font-family:'Unbounded',sans-serif;font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;">✦ Новая часть ✦</div>
+    <h2 style="font-family:'Unbounded',sans-serif;font-size:clamp(22px,4vw,38px);font-weight:700;margin-bottom:1rem;">Крипта с нуля</h2>
+    <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;">Как работают биржи, кошельки, блокчейн и всё остальное — объяснение для тех кто только начинает</p>
+  </div>
+
+  <!-- SECTION 7: КРИПТА С НУЛЯ -->
+  <section id="crypto101">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Что такое крипта вообще</h2>
+    </div>
+
+    <div class="card">
+      <p style="font-size:15px;margin-bottom:1rem">Криптовалюта — это цифровые деньги, которые существуют только в интернете. Их не печатает государство, ими управляет не банк, а математика и компьютерная сеть по всему миру.</p>
+      <p style="font-size:15px;margin-bottom:1rem">Главная идея: <strong>ты сам контролируешь свои деньги</strong>. Никто не может заблокировать твой счёт, никто не может отменить транзакцию, нет единого сервера который можно выключить.</p>
+      <p style="font-size:15px">Это работает на технологии <strong>блокчейн</strong> — публичная база данных всех транзакций, которая хранится одновременно на тысячах компьютеров по всему миру.</p>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:1rem">
+      <div class="metric">
+        <div class="metric-label">Создан</div>
+        <div class="metric-val blue" style="font-size:17px">2009 год</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Первая монета</div>
+        <div class="metric-val gold" style="font-size:17px">Bitcoin</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Монет сегодня</div>
+        <div class="metric-val green" style="font-size:17px">15 000+</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Рынок (май 2026)</div>
+        <div class="metric-val" style="font-size:17px">$2.7 трлн</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">Чем крипта отличается от обычных денег</h4>
+      <table class="info-table">
+        <thead><tr><th>Параметр</th><th>Обычные деньги (рубли/евро)</th><th>Криптовалюта</th></tr></thead>
+        <tbody>
+          <tr><td>Кто управляет</td><td>Центральный банк, государство</td><td>Математика, смарт-контракты</td></tr>
+          <tr><td>Можно заблокировать</td><td>Да, в любой момент</td><td>Нет, если у тебя ключи</td></tr>
+          <tr><td>Перевод за рубеж</td><td>Дни, 3–10% комиссия</td><td>Секунды–минуты, копейки</td></tr>
+          <tr><td>Анонимность</td><td>Нет, банк всё видит</td><td>Псевдоанонимность</td></tr>
+          <tr><td>Инфляция</td><td>Государство печатает сколько хочет</td><td>Ограниченный supply (BTC = 21 млн)</td></tr>
+          <tr><td>Волатильность</td><td>Низкая (1–5% в год)</td><td>Высокая (±50% в месяц)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🔗 Что такое блокчейн — просто</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem">Представь огромную тетрадь с записями всех транзакций. Эта тетрадь хранится одновременно у миллиона людей по всему миру. Когда ты переводишь деньги — запись добавляется сразу во все тетради. Изменить или подделать одну запись невозможно — её нужно изменить у всех миллиона людей одновременно. Это математически невозможно.</p>
+      <div class="ok">💡 Блокчейн = публичная, неизменяемая, децентрализованная база данных. Каждая транзакция видна всем, но имена заменены адресами кошельков.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">Самые важные монеты — кто есть кто</h4>
+      <table class="info-table">
+        <thead><tr><th>Монета</th><th>Для чего</th><th>Аналогия</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bitcoin (BTC)</strong></td><td>Цифровое золото, хранение ценности</td><td>Золото/недвижимость</td></tr>
+          <tr><td><strong>Ethereum (ETH)</strong></td><td>Платформа для приложений и смарт-контрактов</td><td>App Store криптомира</td></tr>
+          <tr><td><strong>Solana (SOL)</strong></td><td>Быстрый блокчейн, дешёвые транзакции</td><td>Быстрый Ethereum</td></tr>
+          <tr><td><strong>TON</strong></td><td>Блокчейн Telegram, мини-аппы</td><td>PayPal внутри Telegram</td></tr>
+          <tr><td><strong>XRP</strong></td><td>Межбанковские переводы</td><td>SWIFT 2.0</td></tr>
+          <tr><td><strong>USDT/USDC</strong></td><td>Стейблкоин — всегда $1</td><td>Доллар в крипте</td></tr>
+          <tr><td><strong>Мемкоины</strong></td><td>Спекуляция, комьюнити, хайп</td><td>Лотерейный билет</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 8: БИРЖИ -->
+  <section id="exchanges">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Биржи — где покупать крипту</h2>
+    </div>
+
+    <div class="card">
+      <p style="font-size:15px;margin-bottom:0.75rem">Биржа — это место где ты меняешь рубли/евро на крипту. Есть два типа: CEX (централизованные, как обычный банк) и DEX (децентрализованные, как @dtrade).</p>
+      <p style="font-size:15px">Для покупки крипты за реальные деньги — тебе нужна <strong>CEX-биржа</strong>. DEX уже используешь в @dtrade.</p>
+    </div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem">⭐ Топ бирж — выбирай любую</h3>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">Bybit</div>
+          <div class="pick-meta">Рекомендуется для новичков · Есть русский язык</div>
+        </div>
+        <span class="badge badge-green">Топ выбор</span>
+      </div>
+      <div class="pick-body">Одна из лучших бирж для начинающих. Простой интерфейс, есть русский язык, P2P торговля (купить за рубли/евро напрямую у людей). Очень удобно покупать TON и выводить в @dtrade. Регистрация 5 минут, KYC не обязателен для малых сумм.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">🌐 bybit.com</span>
+        <span class="pick-stat">🇷🇺 Есть русский</span>
+        <span class="pick-stat">💳 P2P за рубли</span>
+        <span class="pick-stat">📱 Мобильное приложение</span>
+      </div>
+    </div>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">OKX</div>
+          <div class="pick-meta">Крупная биржа · Много монет</div>
+        </div>
+        <span class="badge badge-blue">Популярная</span>
+      </div>
+      <div class="pick-body">Очень крупная биржа, один из мировых лидеров. Огромное количество монет, Web3-кошелёк встроен прямо в приложение. Хорошо подходит для тех кто хочет торговать не только TON-монетами. P2P есть, можно купить за евро/рубли.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">🌐 okx.com</span>
+        <span class="pick-stat">💰 700+ монет</span>
+        <span class="pick-stat">🔐 Встроенный Web3</span>
+      </div>
+    </div>
+
+    <div class="pick-card safe">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">Binance</div>
+          <div class="pick-meta">Крупнейшая в мире · Не для всех стран</div>
+        </div>
+        <span class="badge badge-gold">№1 в мире</span>
+      </div>
+      <div class="pick-body">Самая крупная биржа в мире по объёму. Максимальное количество монет и инструментов. Но с 2024 года ограничена для ряда европейских стран из-за регуляции. Если доступна в твоей стране — отличный вариант. Требует верификацию KYC.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">🌐 binance.com</span>
+        <span class="pick-stat">📊 350+ млрд объём/день</span>
+        <span class="pick-stat">⚠️ Проверь доступность</span>
+      </div>
+    </div>
+
+    <div class="pick-card medium">
+      <div class="pick-header">
+        <div>
+          <div class="pick-title">KuCoin</div>
+          <div class="pick-meta">Много альткоинов · Нет строгого KYC</div>
+        </div>
+        <span class="badge badge-gold">Для альткоинов</span>
+      </div>
+      <div class="pick-body">Отличная биржа если хочешь найти мелкие монеты которых нет на Binance/OKX. KYC необязателен для небольших объёмов (до $2K/день). P2P торговля есть. Интерфейс чуть сложнее чем у Bybit.</div>
+      <div class="pick-footer">
+        <span class="pick-stat">🌐 kucoin.com</span>
+        <span class="pick-stat">🪙 700+ монет</span>
+        <span class="pick-stat">🔓 Без KYC до $2K</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem">
+      <h4 style="margin-bottom:1rem;font-weight:600">Как купить крипту на бирже — пошагово</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">1</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Регистрация</h4><p>Заходишь на сайт биржи (например bybit.com), создаёшь аккаунт — email + пароль. Включи двухфакторную аутентификацию (2FA) — это обязательно.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">2</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Верификация (KYC)</h4><p>Know Your Customer — загружаешь фото паспорта и селфи. Занимает 5–30 минут. После этого доступны все функции и высокие лимиты.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">3</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Пополнение через P2P</h4><p>P2P = покупаешь крипту у живых людей за рубли/евро. Выбираешь продавца, переводишь деньги на его карту, он отправляет тебе USDT или сразу TON. Безопасно — биржа держит деньги в эскроу.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">4</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Покупка на споте</h4><p>В разделе Spot (спот) — меняешь USDT на нужную монету (BTC, ETH, TON и т.д.). Это как обменник: указываешь сколько хочешь купить → жмёшь Buy.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">5</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Вывод в свой кошелёк</h4><p>Withdraw (вывод) → вставляешь свой TON-адрес из TonKeeper → указываешь сумму → подтверждаешь. TON придёт на кошелёк за 1–3 минуты.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">⚠️ <strong>Важно:</strong> биржа — это не твой кошелёк. Пока крипта лежит на бирже — она не твоя полностью. Если биржа взломана или банкрот — деньги потеряны (как FTX в 2022). Для хранения выводи в свой кошелёк.</div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">Типы ордеров на бирже</h4>
+      <table class="info-table">
+        <thead><tr><th>Тип</th><th>Как работает</th><th>Когда использовать</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Market Order</strong></td><td>Покупаешь/продаёшь прямо сейчас по текущей рыночной цене</td><td>Когда нужно быстро</td></tr>
+          <tr><td><strong>Limit Order</strong></td><td>Ставишь свою цену — биржа исполнит ордер когда цена дойдёт</td><td>Когда хочешь купить дешевле</td></tr>
+          <tr><td><strong>Stop Loss</strong></td><td>Автоматически продаёт если цена упала до твоего уровня</td><td>Защита от больших убытков</td></tr>
+          <tr><td><strong>Take Profit</strong></td><td>Автоматически продаёт когда цена достигла твоей цели</td><td>Фиксация прибыли</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 9: КОШЕЛЬКИ -->
+  <section id="wallets">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <h2 class="section-title">Кошельки — где хранить крипту</h2>
+    </div>
+
+    <div class="card">
+      <p style="font-size:15px;margin-bottom:0.75rem">Крипто-кошелёк — это не где лежат твои монеты. Монеты существуют в блокчейне. Кошелёк — это <strong>ключи</strong> доступа к ним. Как ключ от квартиры: ключ у тебя, а квартира стоит на месте.</p>
+      <p style="font-size:15px">Самое главное: <strong>Seed-фраза</strong> (12 или 24 слова) = это и есть твой кошелёк. Кто знает seed-фразу — тот владеет монетами. Потерял seed — потерял деньги навсегда.</p>
+    </div>
+
+    <div class="danger">🚨 <strong>Никогда и никому не давай seed-фразу.</strong> Ни поддержке, ни другу, ни "официальному сотруднику". Это 100% мошенничество. Запиши фразу на бумаге и храни физически.</div>
+
+    <h3 style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:1.5rem 0 1rem">Типы кошельков</h3>
+
+    <div class="card-grid" style="margin-bottom:1rem">
+      <div class="card" style="border-color:rgba(0,184,148,0.25)">
+        <h4 style="color:var(--green2);margin-bottom:0.75rem;font-size:14px">🌐 Горячий кошелёк (Hot Wallet)</h4>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:0.75rem">Приложение на телефоне или компьютере. Подключён к интернету. Удобно для ежедневного использования.</p>
+        <p style="font-size:13px;margin-bottom:0.5rem"><strong>Примеры:</strong></p>
+        <p style="font-size:13px;color:var(--muted)">TonKeeper (TON) · MetaMask (ETH) · Phantom (SOL) · Trust Wallet</p>
+        <div class="warn" style="margin-top:0.75rem;font-size:12px">Риск взлома если телефон заражён</div>
+      </div>
+      <div class="card" style="border-color:rgba(9,132,227,0.25)">
+        <h4 style="color:var(--blue2);margin-bottom:0.75rem;font-size:14px">🔐 Холодный кошелёк (Cold Wallet)</h4>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:0.75rem">Физическое устройство (флешка). Не подключено к интернету. Максимальная безопасность.</p>
+        <p style="font-size:13px;margin-bottom:0.5rem"><strong>Примеры:</strong></p>
+        <p style="font-size:13px;color:var(--muted)">Ledger Nano X · Trezor Model T · Coldcard</p>
+        <div class="ok" style="margin-top:0.75rem;font-size:12px">Рекомендуется для сумм от $1,000+</div>
+      </div>
+      <div class="card" style="border-color:rgba(253,203,110,0.25)">
+        <h4 style="color:var(--gold);margin-bottom:0.75rem;font-size:14px">📱 Кастодиальный (биржа)</h4>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:0.75rem">Крипта хранится на бирже. Удобно, но ты не контролируешь ключи.</p>
+        <p style="font-size:13px;margin-bottom:0.5rem"><strong>Примеры:</strong></p>
+        <p style="font-size:13px;color:var(--muted)">Binance · Bybit · OKX аккаунты</p>
+        <div class="warn" style="margin-top:0.75rem;font-size:12px">Not your keys — not your coins</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🏦 Лучшие горячие кошельки — детально</h4>
+      <table class="info-table">
+        <thead><tr><th>Кошелёк</th><th>Блокчейн</th><th>Особенности</th></tr></thead>
+        <tbody>
+          <tr><td><strong>TonKeeper</strong></td><td>TON</td><td>Уже у тебя подключён. Лучший для TON + dtrade</td></tr>
+          <tr><td><strong>MetaMask</strong></td><td>Ethereum, EVM</td><td>Самый популярный ETH-кошелёк. Расширение для браузера + приложение</td></tr>
+          <tr><td><strong>Phantom</strong></td><td>Solana, ETH, BTC</td><td>Лучший для Solana. Красивый интерфейс, мультичейн</td></tr>
+          <tr><td><strong>Trust Wallet</strong></td><td>100+ блокчейнов</td><td>Мультивалютный. Принадлежит Binance. Хорош для новичков</td></tr>
+          <tr><td><strong>Rabby</strong></td><td>Ethereum, EVM</td><td>Лучше MetaMask по безопасности. Показывает что подписываешь</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🔑 Seed-фраза — главное о безопасности</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">✓</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Запиши на бумаге</h4><p>Ручкой, на бумаге. Сделай 2 копии и храни в разных местах. Никаких фото и скриншотов.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">✓</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Никогда не вводи онлайн</h4><p>Никаких Google Docs, облаков, мессенджеров. Если кто-то просит ввести seed — это 100% мошенник.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">✓</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Одна seed = один кошелёк</h4><p>Не используй одну seed-фразу для разных кошельков. Потеря одного = потеря всего.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10: КАК ВСЁ УСТРОЕНО -->
+  <section id="howcrypto">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <h2 class="section-title">Как всё устроено внутри</h2>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">⛏️ Майнинг и стейкинг — откуда берутся новые монеты</h4>
+      <table class="info-table">
+        <thead><tr><th>Механизм</th><th>Как работает</th><th>Пример</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Майнинг (PoW)</strong></td><td>Компьютеры решают сложные задачи и получают монеты за это. Очень энергозатратно.</td><td>Bitcoin, Litecoin</td></tr>
+          <tr><td><strong>Стейкинг (PoS)</strong></td><td>Блокируешь монеты в сеть, получаешь % годовых. Как депозит в банке, но с крипто.</td><td>ETH, SOL, TON</td></tr>
+          <tr><td><strong>Фарминг (DeFi)</strong></td><td>Даёшь ликвидность в пулы DEX, получаешь комиссии от сделок других трейдеров.</td><td>Uniswap, DeDust</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">📜 Смарт-контракты — мозг крипты</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">Смарт-контракт — это программа в блокчейне. Она автоматически исполняется при выполнении условий. Никакого посредника, никакого доверия — только код.</p>
+      <div class="card-grid">
+        <div class="metric">
+          <div class="metric-label">Пример 1</div>
+          <div class="metric-val" style="font-size:14px;line-height:1.4">Отправь 1 ETH → автоматически получи 1000 токенов</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Пример 2</div>
+          <div class="metric-val" style="font-size:14px;line-height:1.4">Держи монету 30 дней → автоматически получи 5% дохода</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Пример 3</div>
+          <div class="metric-val" style="font-size:14px;line-height:1.4">DEX: обменяй TON → мемкоин по текущему курсу</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🏊 Пулы ликвидности — как работает DEX</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">В отличие от обычной биржи (где покупатели и продавцы встречаются), на DEX торговля идёт через пулы ликвидности.</p>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">Пул = резервуар из двух монет (например TON + UTYA). Когда ты покупаешь UTYA — забираешь UTYA из пула, кладёшь TON. Цена меняется автоматически по формуле.</p>
+      <div class="info">💡 Чем больше денег в пуле (Liquidity) — тем стабильнее цена при твоей покупке. Маленький пул = большое проскальзывание.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">📊 DeFi — децентрализованные финансы</h4>
+      <table class="info-table">
+        <thead><tr><th>Инструмент</th><th>Что это</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lending (кредитование)</strong></td><td>Даёшь крипту в долг другим — получаешь % годовых (Aave, Compound)</td></tr>
+          <tr><td><strong>Borrowing (займ)</strong></td><td>Берёшь кредит под залог крипты, не продавая её</td></tr>
+          <tr><td><strong>Yield Farming</strong></td><td>Добываешь доход через несколько протоколов одновременно</td></tr>
+          <tr><td><strong>NFT</strong></td><td>Уникальные цифровые предметы (картинки, игровые предметы, документы) в блокчейне</td></tr>
+          <tr><td><strong>Launchpad</strong></td><td>Платформа для ICO/IDO — ранний вход в новые проекты по минимальной цене</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 11: СТРАТЕГИИ -->
+  <section id="strategies">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <h2 class="section-title">Стратегии торговли</h2>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">📈 DCA — Dollar Cost Averaging</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">Самая простая и эффективная стратегия для новичка. Смысл: покупаешь фиксированную сумму каждую неделю/месяц — независимо от цены. Не угадываешь дно, просто усредняешь.</p>
+      <div class="ok">📌 Пример: каждую неделю покупаешь BTC на €50. Иногда по $80K, иногда по $60K — в среднем получается хорошая цена. Убираешь эмоции из торговли.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">💎 HODL — долгосрочное удержание</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">Покупаешь монеты и держишь 1–4 года. Не следишь за каждым движением цены. Исторически BTC через 4 года всегда был выше точки входа при любой покупке.</p>
+      <table class="info-table">
+        <thead><tr><th>Купил в</th><th>Цена BTC</th><th>Через 4 года</th><th>Результат</th></tr></thead>
+        <tbody>
+          <tr><td>2017 (ATH)</td><td>$19,000</td><td>2021: $65,000</td><td><span class="badge badge-green">+242%</span></td></tr>
+          <tr><td>2021 (ATH)</td><td>$69,000</td><td>2025: $109,000</td><td><span class="badge badge-green">+58%</span></td></tr>
+          <tr><td>2022 (дно)</td><td>$16,000</td><td>2026: $78,000</td><td><span class="badge badge-green">+387%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">⚡ Трейдинг — активная торговля</h4>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem">Покупаешь и продаёшь часто, пытаясь ловить движения цены. Высокий потенциал, но 80%+ активных трейдеров теряют деньги. Требует опыта, времени и железных нервов.</p>
+      <div class="warn">⚠️ Трейдинг — не для новичков. Начни с DCA + HODL, торговлю мемкоинами через @dtrade, и только потом переходи к активному трейдингу если вообще хочешь.</div>
+      <table class="info-table" style="margin-top:1rem">
+        <thead><tr><th>Тип</th><th>Горизонт</th><th>Риск</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Скальпинг</strong></td><td>Минуты–часы</td><td><span class="badge badge-red">Экстремальный</span></td></tr>
+          <tr><td><strong>Day Trading</strong></td><td>В течение дня</td><td><span class="badge badge-red">Очень высокий</span></td></tr>
+          <tr><td><strong>Swing Trading</strong></td><td>Дни–недели</td><td><span class="badge badge-gold">Высокий</span></td></tr>
+          <tr><td><strong>Position Trading</strong></td><td>Недели–месяцы</td><td><span class="badge badge-gold">Средний</span></td></tr>
+          <tr><td><strong>DCA + HODL</strong></td><td>Месяцы–годы</td><td><span class="badge badge-green">Низкий</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🎯 Технический анализ — базовые понятия</h4>
+      <table class="info-table">
+        <thead><tr><th>Термин</th><th>Что означает</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Поддержка (Support)</strong></td><td>Уровень цены откуда монета часто отскакивает вверх. Хорошее место для покупки.</td></tr>
+          <tr><td><strong>Сопротивление (Resistance)</strong></td><td>Уровень цены где монета часто разворачивается вниз. Хорошее место для продажи.</td></tr>
+          <tr><td><strong>RSI</strong></td><td>Индикатор перекупленности. RSI > 70 = перекуплено (скоро упадёт). RSI < 30 = перепродано (скоро вырастет).</td></tr>
+          <tr><td><strong>Объём (Volume)</strong></td><td>Сколько торговали за период. Рост цены на высоком объёме = сильный сигнал. На низком = слабый.</td></tr>
+          <tr><td><strong>Свечи</strong></td><td>Каждая свеча = период (1мин/1час/1день). Зелёная = цена выросла, красная = упала.</td></tr>
+          <tr><td><strong>Бычья дивергенция</strong></td><td>Цена делает новый минимум, а RSI нет = скрытая сила покупателей, разворот вверх.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🧠 Психология трейдера — почему люди теряют деньги</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">❌</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>FOMO — покупают на пике</h4><p>Видят что все зарабатывают → покупают на хаях → цена разворачивается → паникуют → продают в убыток.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">❌</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Усреднение убытка</h4><p>Монета -50% → докупают "чтобы снизить среднюю" → монета -80% → теряют в 2 раза больше.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">❌</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Нет стоп-лосса</h4><p>"Я не продам, просто подожду" — монета улетает в -95% и уже не возвращается.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">✓</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Правило профи</h4><p>Перед каждой сделкой решай: при каком убытке выхожу (стоп) и при какой прибыли фиксирую (тейк). И не меняй правила в процессе.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 12: НАЛОГИ И ВЫВОД -->
+  <section id="taxes">
+    <div class="section-header">
+      <span class="section-num">12</span>
+      <h2 class="section-title">Налоги и вывод денег</h2>
+    </div>
+
+    <div class="warn">⚠️ Налоги на крипту в разных странах разные. Это общая информация — уточняй конкретику по своей стране у местного специалиста.</div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">💶 Вывод крипты в евро/рубли</h4>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">1</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Продаёшь крипту в USDT</h4><p>На бирже продаёшь BTC/ETH/TON → получаешь USDT (стейблкоин привязан к $1)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">2</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>P2P — USDT в евро/рубли</h4><p>В P2P разделе биржи продаёшь USDT реальным людям. Они переводят деньги на твою карту, ты отдаёшь USDT. Биржа в эскроу — безопасно.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num-wrap"><div class="step-circle">3</div><div class="step-line"></div></div>
+          <div class="step-body"><h4>Деньги на карте</h4><p>Выбирай продавцов с высоким рейтингом (99%+) и большим количеством сделок. Средняя скорость — 15–30 минут.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🧾 Налоги — общие принципы</h4>
+      <table class="info-table">
+        <thead><tr><th>Страна/ситуация</th><th>Как облагается</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Германия</strong></td><td>Если держишь монету >1 года — продажа без налога. Меньше года — платишь налог с прибыли как с дохода.</td></tr>
+          <tr><td><strong>Россия</strong></td><td>Крипта официально — имущество. НДФЛ 13–15% с прибыли. Отчитываться через 3-НДФЛ.</td></tr>
+          <tr><td><strong>Большинство EU</strong></td><td>Налог на прирост капитала (10–30% зависит от страны) при продаже с прибылью.</td></tr>
+          <tr><td><strong>Обмен крипта→крипта</strong></td><td>Во многих странах это тоже налоговое событие. Например BTC→ETH = продажа BTC.</td></tr>
+        </tbody>
+      </table>
+      <div class="info" style="margin-top:1rem">💡 Используй Koinly или CoinTracking — они автоматически считают налоги по истории транзакций и формируют отчёты для налоговой.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:1rem;font-weight:600">🔒 Безопасность — финальный чеклист</h4>
+      <table class="info-table">
+        <thead><tr><th>Что сделать</th><th>Почему важно</th></tr></thead>
+        <tbody>
+          <tr><td>✅ Включи 2FA на бирже</td><td>Даже если знают пароль — войти не смогут без телефона</td></tr>
+          <tr><td>✅ Запиши seed-фразу на бумаге</td><td>Потеря телефона = не потеря кошелька если есть seed</td></tr>
+          <tr><td>✅ Используй отдельный email для крипты</td><td>Не связан с другими аккаунтами — сложнее взломать</td></tr>
+          <tr><td>✅ Не храни большие суммы на бирже</td><td>Взлом биржи — твои деньги уходят навсегда</td></tr>
+          <tr><td>✅ Проверяй адрес перед отправкой</td><td>Неправильный адрес = деньги потеряны навсегда, возврата нет</td></tr>
+          <tr><td>✅ Не кликай на ссылки из сообщений</td><td>99% "поддержки" в телеграм — мошенники</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <p>⚠️ Это образовательный материал, не финансовый совет. Криптовалюта — высокорисковый актив. Все решения принимаются самостоятельно и на свой страх и риск. Прошлые результаты не гарантируют будущих.</p>
+  </div>
+
+</div>
+
+<script>
+  function filterTerms(val) {
+    const q = val.toLowerCase().trim();
+    document.querySelectorAll('.term-card').forEach(card => {
+      const text = (card.textContent + (card.dataset.tags||'')).toLowerCase();
+      card.classList.toggle('hidden', q && !text.includes(q));
+    });
+  }
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
